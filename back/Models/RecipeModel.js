@@ -2,11 +2,13 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const recipeSchema = new Schema({
-    name: { type: String, required: true},
-    instructions: { type: String, required: true},
-    preparationTime: { type: Number, required: true},
-    difficulty: {type: String, enum: ['Facile', 'Moyen', 'Difficile'], default: 'Moyen'},
-    Illustration: {type: String}
+    title: { type: String, required: true},
+    description: { type: String, required: true},
+    ingredients: {type:[String], required:true},
+    instructions: { type:String, required:true},
+    image: {type: String},
+    category: {type: String, required: true}
+    
 }, {
     timestamps: true
 });
