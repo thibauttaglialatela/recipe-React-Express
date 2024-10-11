@@ -1,11 +1,20 @@
 const Recipe = require('../Models/RecipeModel');
 
+
 const createRecipe = async (req, res) => {
+
     try {
-        const newRecipe = await Recipe.create(req.body);
+        const recipeData = {
+            ...req.body,
+            image: req.file ? req.file.filename : null
+        };
+
+        const newRecipe = await Recipe.create(recipeData);
+
         res.status(201).json(newRecipe);
     } catch (err) {
         console.error('erreur lors de l\'ajout : ', err.message);
+        res.status(500).json({message: 'Erreur lors de l\'ajout de la recette'});
     }
 }
 
