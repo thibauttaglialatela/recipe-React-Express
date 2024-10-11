@@ -9,6 +9,16 @@ const createRecipe = async (req, res) => {
     }
 }
 
+const getAllRecipes = async (req, res) => {
+    try {
+        const recipes = await Recipe.find();
+        res.status(200).json(recipes);
+    } catch (err) {
+        console.error('Erreur lors de la récupération : ', err.message);
+    }
+}
+
 module.exports = {
-    createRecipe
+    createRecipe,
+    getAllRecipes
 };
