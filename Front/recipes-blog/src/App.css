@@ -33,8 +33,75 @@
   }
 }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 10px;
+  justify-items: center; 
+  align-items: start; 
+  padding: 20px; 
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .card {
-  padding: 2em;
+  display: flex;
+  flex-direction: column; /* Contenu empilé verticalement */
+  justify-content: space-between; /* Assure que le bouton est au bas de la carte */
+  border: 1px solid #007bff;
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  background-color: #f9f9f9;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: max-content;
+}
+
+
+.card-image {
+  width: 100%;
+  height: auto;
+}
+
+.card-image img {
+  width: 100%;
+  max-height: 300px; /* Limiter la hauteur de l'image */
+  object-fit: cover; /* Coupe l'image si nécessaire */
+  border-radius: 8px;
+}
+
+.card-content {
+  flex-grow: 1;
+  padding: 10px 0;
+}
+
+.card-content h2 {
+  font-size: 1.5rem;
+  margin: 12px 0;
+}
+
+.card-content p {
+  font-size: 1rem;
+  color: #666;
+}
+
+body .card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.details-button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.details-button:hover {
+  background-color: #0056b3;
 }
 
 .read-the-docs {
@@ -100,3 +167,6 @@ form button {
 form button:hover {
   background-color: #0056b3;
 }
+
+
+

@@ -17,6 +17,7 @@ server.use(cors({
 server.use(express.json());
 server.use(express.urlencoded({ extended: true}));
 server.use(recipeRoutes);
+server.use('/uploads', express.static('uploads'));
 
 server.listen(PORT, () => {
     console.log(`serveur en écoute sur le port ${PORT}`);
