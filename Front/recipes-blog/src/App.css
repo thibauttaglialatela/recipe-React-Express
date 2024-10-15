@@ -168,5 +168,32 @@ form button:hover {
   background-color: #0056b3;
 }
 
+.recipe-flex-container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+}
 
+.recipe-flex-container img {
+/*   width: 50vw;
+  height: auto; */
+  max-height: 50vh;
+  width: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.recipe-flex-container img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.recipe-flex-container div {
+  max-width: 75%;
+}
+.recipe-flex-container p {
+  text-align: left;
+  padding: 5px 10px;
+}
