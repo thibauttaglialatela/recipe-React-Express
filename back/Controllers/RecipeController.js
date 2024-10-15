@@ -42,8 +42,23 @@ const getOneRecipeById = async (req, res) => {
 
 }
 
+const deleteOneRecipeById = async (req, res) => {
+    const {id} = req.params;
+    try {
+        const recipeToDelete = await Recipe.findByIdAndDelete(id);
+
+        if (!recipeToDelete) {
+            throw new Error('recette inconnue');
+        }
+
+    } catch (err) {
+        console.error('Erreur lors de la suppression : ', err.message)
+    }
+}
+
 module.exports = {
     createRecipe,
     getAllRecipes,
-    getOneRecipeById
+    getOneRecipeById,
+    deleteOneRecipeById
 };
