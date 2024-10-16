@@ -13,11 +13,11 @@ const RecipeCard = ({ title, description, image, _id}) => {
                     )
                 }
             </header>
-            <body className="card-content">
+            <div className="card-content">
                 <h2>{title}</h2>
                 <p>{description}</p>
-            </body>
-            <Link to="#">
+            </div>
+            <Link to={`/show-recipe/${_id}`}>
             <button className="details-button">Détails</button>
             </Link>
         </article>

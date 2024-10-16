@@ -14,7 +14,6 @@ const Home = () => {
     getRecipes();
   }, []);
 
-  console.log(recipes);
   return (
     <>
       <h1>Site de recette de cuisine</h1>
