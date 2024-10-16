@@ -24,6 +24,7 @@ const getAllRecipes = async (req, res) => {
         res.status(200).json(recipes);
     } catch (err) {
         console.error('Erreur lors de la récupération : ', err.message);
+        res.status(500).json({message: 'Erreur lors de la récupération des recettes'});
     }
 }
 
@@ -45,16 +46,19 @@ const getOneRecipeById = async (req, res) => {
 const deleteOneRecipeById = async (req, res) => {
     const {id} = req.params;
     try {
-        const recipeToDelete = await Recipe.findByIdAndDelete(id);
+        const response = await Recipe.deleteOne({_id: id});
 
-        if (!recipeToDelete) {
-            throw new Error('recette inconnue');
+        if (response.deletedCount !== 1) {
+            return res.status(404).json({message: `Recette non trouvée avec l'id: ${id}`});
         }
-
+        
+        return res.status(200).json({message: 'Recette supprimée avec succès'});
+        
     } catch (err) {
-        console.error('Erreur lors de la suppression : ', err.message)
+        res.status(500).json({message: `Erreur lors de la suppression : ${err.message}`});
     }
 }
+
 
 module.exports = {
     createRecipe,
