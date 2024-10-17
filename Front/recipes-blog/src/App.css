@@ -86,6 +86,20 @@
   color: #666;
 }
 
+.card footer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.delete-button {
+  background-color: hsl(0, 100%, 50%);
+  color: #0A0A0A;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 body .card-content {
   display: flex;
   flex-direction: column;
