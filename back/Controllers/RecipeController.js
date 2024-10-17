@@ -59,10 +59,32 @@ const deleteOneRecipeById = async (req, res) => {
     }
 }
 
+const findAndUpdateOneRecipe = async (req, res) => {
+    const {id} = req.params;
+
+    if (Object.keys(req.body).length === 0) {
+        return res.status(400).json({message: 'Données de mise à jour manquantes'});
+    }
+    try {
+        const updatedRecipe = await Recipe.findByIdAndUpdate(id, req.body, {
+            new: true
+        });
+        if (!updatedRecipe) {
+            return res.status(404).json({message: `Recette avec id ${id} introuvable`});
+        }
+        res.json({message: 'Recette mise à jour', data: updatedRecipe});
+        
+    } catch (error) {
+        res.status(500).json({message: `Erreur dans le traitement de la requête: ${error.message}`});
+    }
+
+}
+
 
 module.exports = {
     createRecipe,
     getAllRecipes,
     getOneRecipeById,
-    deleteOneRecipeById
+    deleteOneRecipeById,
+    findAndUpdateOneRecipe
 };
