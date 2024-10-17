@@ -23,6 +23,9 @@ const RecipeCard = ({ title, description, image, _id, handleDelete}) => {
             <button className="details-button">Détails</button>
             </Link>
             <button onClick={() => handleDelete(_id)} className="delete-button">Supprimer la recette</button>
+            <Link to={`/update-recipe/${_id}`}>
+            <button className="details-button">Mettre à jour</button>
+            </Link>
             </footer>
         </article>
     );
