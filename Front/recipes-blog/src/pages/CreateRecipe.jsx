@@ -49,7 +49,7 @@ const CreateRecipe = () => {
   };
   return (
     <>
-      <h1>Ajout d'une recette</h1>
+      <h1>Add a recipe</h1>
       <form onSubmit={handleSubmit} method="post" encType="multipart/form-data">
         <label htmlFor="title">
           Titre de la recette

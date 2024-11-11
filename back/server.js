@@ -2,7 +2,8 @@ const express = require('express');
 const server = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
-const recipeRoutes = require('./Routes/RecipeRoutes');
+const recipeRoutes = require('./Routes/Recipe');
+const authRoutes = require('./Routes/auth');
 const PORT = 3000;
 
 
@@ -16,7 +17,8 @@ server.use(cors({
 
 server.use(express.json());
 server.use(express.urlencoded({ extended: true}));
-server.use(recipeRoutes);
+server.use('/api/recipes', recipeRoutes);
+server.use(authRoutes);
 server.use('/uploads', express.static('uploads'));
 
 server.listen(PORT, () => {
