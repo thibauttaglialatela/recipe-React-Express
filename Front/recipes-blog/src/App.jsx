@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import ShowRecipeDetails from "./pages/ShowRecipeDetails";
 import UpdateRecipe from "./pages/UpdateRecipe";
+import RegistrationUser from "./pages/RegistrationUser";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
             <Route path="/add-recipe" element={<CreateRecipe />} />
             <Route path="/show-recipe/:id" element={<ShowRecipeDetails />} />
             <Route path="/update-recipe/:id" element={<UpdateRecipe />} />
+            <Route path="/register" element={<RegistrationUser />} />
           </Routes>
         </header>
       </Router>

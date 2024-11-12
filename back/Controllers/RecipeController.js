@@ -1,4 +1,4 @@
-const Recipe = require('../Models/RecipeModel');
+const Recipe = require('../Models/Recipe');
 
 
 const createRecipe = async (req, res) => {
