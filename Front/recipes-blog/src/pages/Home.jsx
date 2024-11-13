@@ -5,10 +5,12 @@ const Home = () => {
   const [recipes, setRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [user, setUser] = useState(null);
   const baseUrlApi = "http://localhost:3000/api/recipes/";
 
   useEffect(() => {
     getRecipes();
+    checkUserSession();
   }, []);
 
   const handleDelete = async (id) => {
@@ -44,12 +46,29 @@ const Home = () => {
     setRecipes(data);
   };
 
+  const checkUserSession = async () => {
+try {
+  const response = await fetch('http://localhost:3000/session');
+  const data = await response.json();
+  if (data.isAuthenticated) {
+    setUser(data.email);
+  } else {
+    setUser(null);
+  }
+} catch (error) {
+  console.error("Erreur lors de la récupération de la session :", error);
+      setUser(null);
+}
+  }
+
 
 
   
   return (
     <>
       <h1>Site de recette de cuisine</h1>
+            {/* Affiche un message de bienvenue si l'utilisateur est connecté */}
+            {user && <p>Bienvenue, {user} !</p>}
       <section className="grid-container">
       {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
