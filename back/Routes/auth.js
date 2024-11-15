@@ -13,11 +13,14 @@ router.post('/register', [
 router.post('/login',[body('email').isEmail(), body('password').notEmpty()], login);
 
 router.get('/session', (req, res) => {
-    if (req.session.userId) {
-        res.json({ isAuthenticated: true, email: req.session.email});
+    console.log("Requête reçue sur /session");
+    console.log("Données de session dans /session:", req.session.user);
+
+    if (req.session.user && req.session.user.id) {
+        res.json({ isAuthenticated: true, email: req.session.user.email });
     } else {
-        res.json({ isAuthenticated: false});
+        res.json({ isAuthenticated: false });
     }
-})
+});
 
 module.exports = router;

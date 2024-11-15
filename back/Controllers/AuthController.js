@@ -36,30 +36,33 @@ const login = async (req, res) => {
       .json({ message: "Veuillez fournir un email et un mot de passe." });
   }
 
-  console.log(email);
-  console.log(password);
-
   try {
     //on cherche si l'utilisateur exite dans la base
     const user = await User.findOne({ email });
-    console.log(user);
     if (!user) {
-      console.log("Utilisateur non trouvé dans la base de données");
-      return res.status(401).send("email ou mot de passe incorrect");
+      return res.status(401).send("Identifiants incorrects");
     }
     //vérification du mot de passe
     const match = await bcrypt.compare(password, user.password);
-    console.log("Correspondance du mot de passe:", match);
 
     if (match) {
-      req.session.userId = user._id;
-      res.status(200).json({ message: "Connexion réussie" });
-      console.log("connexion réussie", req.session.userId);
+      req.session.user = { id: user._id, email: user.email };
+      req.session.save((err) => {
+        if (err) {
+          console.error("Erreur lors de la connexion: ", err);
+          return res.status(500).json({ message: 'Erreur lors de la connexion'});
+        }
+        console.log("session aprés sauvegarde : ", req.session);
+        console.log("connexion réussie", req.session.user.id);
+        res.status(200).json({ message: "Connexion réussie" });
+      });
+
+      console.log("connexion réussie", req.session.user.id);
     } else {
       res.status(401).json({ message: "email ou mot de passe incorrect" });
     }
   } catch (error) {
-    res.status(401).json({ message: "Erreur lors la connexion" });
+    res.status(500).json({ message: "Erreur lors la connexion" });
   }
 };
 

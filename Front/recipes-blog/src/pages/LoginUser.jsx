@@ -27,7 +27,8 @@ const LoginUser = () => {
 
             if (!response.ok) {
                 const errorData = await response.json();
-                setMessage(Array.isArray(errorData.errors) ? errorData.errors : [errorData.errors]);
+                console.error("mes erreurs: ",errorData);
+                setMessage(Array.isArray(errorData.message) ? errorData.message : [errorData.message]);
                 return;
             }
 
@@ -68,7 +69,7 @@ const LoginUser = () => {
           <button type="submit">Login</button>
         </form>
 
-        {Array.isArray(message) && message.map((msg, index) => <p key={index}>{msg}</p>)}
+        {Array.isArray(message) && message.map((msg, index) => <p className="error" key={index}>{msg}</p>)}
       </>
     )
 

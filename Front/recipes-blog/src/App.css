@@ -213,3 +213,7 @@ form button:hover {
   text-align: left;
   padding: 5px 10px;
 }
+
+.error {
+  color:hsl(0, 100%, 50%);
+}
