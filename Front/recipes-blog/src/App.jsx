@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import ShowRecipeDetails from "./pages/ShowRecipeDetails";
 import UpdateRecipe from "./pages/UpdateRecipe";
 import RegistrationUser from "./pages/RegistrationUser";
+import LoginUser from "./pages/LoginUser";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
             <Route path="/show-recipe/:id" element={<ShowRecipeDetails />} />
             <Route path="/update-recipe/:id" element={<UpdateRecipe />} />
             <Route path="/register" element={<RegistrationUser />} />
+            <Route path="/login" element={<LoginUser />} />
           </Routes>
         </header>
       </Router>
